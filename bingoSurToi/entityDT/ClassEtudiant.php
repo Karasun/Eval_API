@@ -5,7 +5,7 @@ Class Etudiant {
     public $nom;
     public $prenom;
     public $datetime;
-    public $interv;
+    public $interv = array();
 
     public function __cosntruct($nom, $prenom, $id = null, $interv = null, $datetime = null) {
         $this->nom = $nom;
@@ -32,7 +32,7 @@ Class Etudiant {
      public function getInterv() {
         return $this->interv;
      }
-     public function setInterv($interev){
+     public function setInterv($interv){
         $this->interv = $interv;
      }
      public function getDatetime() {

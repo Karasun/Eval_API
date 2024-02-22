@@ -10,7 +10,7 @@ class Etudiant {
         return count($this->lesInterventions);
     }
     public function addIntervention() {
-        $this->lesInterventions[]=newDateTime();
+        $this->lesInterventions[]=new DateTime();
     }
 
 }

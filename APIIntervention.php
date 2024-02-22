@@ -1,6 +1,6 @@
 <?php
 
-include_once("bingoSurToi/modele/DAOEtudiantDT.php");
+include_once("bingoSurToi/modele/DAOIntervention.php");
 include_once("bingoSurToi/global/config.php");
 include_once("bingoSurToi/libs/pdo2.php");
 
@@ -19,9 +19,15 @@ switch ($methode){
 		addUnEtudiant($_POST['nom'], $_POST['prenom']);
 		echo "Validé";
 	  break;
-	case "PUT":
-	   updateUnEtudiant($_PUT["nom"], $_PUT["prenom"],$_PUT["id"]);
-           echo "PUT, on modifie le nom en mettant ".$_PUT['nom']. " pour l'objet existant dont l'id est ".$_PUT['id'];
+	  case "PUT":
+		parse_str(file_get_contents('php://input'), $_PUT);
+		try {
+		addInterventionEtudiant($_PUT['id']);
+		http_response_code(202);
+		}
+		catch (Exception $e){
+		http_response_code(400);
+		}
 	  break; 
     	case "DELETE":
 	  deleteUnEtudiant( $_DELETE["id"]);
